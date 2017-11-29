@@ -2,7 +2,7 @@
 $current_page = $data['paginator']['current_page_number'];
 ?>
 <h1>Listing </h1>
-<table class="table table-striped">
+<table class="table table-striped" id="tableListing">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -20,7 +20,7 @@ $current_page = $data['paginator']['current_page_number'];
                 <td><?php echo $r; ?></td>
             <?php endforeach; ?>
             <td><?php echo sprintf('<a href="index.php?action=edit&id=%d">Edit</a>', $row['sysid']); ?></td>
-            <td><?php echo sprintf('<a href="index.php?action=delete&id=%d">Delete</a>', $row['sysid']); ?></td>
+            <td><?php echo sprintf('<a class="btn-delete" data-code="%s" href="index.php?action=delete&id=%d">Delete</a>', $row['sysid'], $row['sysid']); ?></td>
 
         </tr>
     <?php endforeach; ?>

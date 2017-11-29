@@ -19,53 +19,46 @@ $( document ).ready(function() {
         });
         e.preventDefault();
     });
-    //
-    // $('#btn-submit').click(function(e){
-    //     console.log( "submit btn!" );
-    //     $.ajax({
-    //         url: 'ajax.php',
-    //         data: $("#frm-edit").serialize(),
-    //         type: 'post',
-    //         dataType: 'json',
-    //         success: function (rs) {
-    //             console.log('iiiiiiiiiii');
-    //             console.log(rs);
-    //             $('#msg-cnt').html(rs.message);
-    //
-    //             // if (respuesta == 1) {
-    //             //     alert('exito al cargar modulo');
-    //             // }
-    //             // else {
-    //             //     alert('Error al cargar modulo');
-    //             // }
-    //         }
-    //     });
-    //     e.preventDefault();
-    //     //Some code
-    // });
-
-    // $("#frm-edit").submit(function(e) {
-    //     console.log( "submit ajax!" );
-    //     //var frm = $(this);
-    //     $.ajax({
-    //         url: 'ajax.php',
-    //         data: $("#frm-edit").serialize(),
-    //         type: 'post',
-    //         dataType: 'json',
-    //         success: function (rs) {
-    //             console.log('iiiiiiiiiii');
-    //             console.log(rs);
-    //             $('#msg-cnt').html(rs.message);
-    //
-    //             // if (respuesta == 1) {
-    //             //     alert('exito al cargar modulo');
-    //             // }
-    //             // else {
-    //             //     alert('Error al cargar modulo');
-    //             // }
-    //         }
-    //     });
-    //     e.preventDefault();
-    // });
 
 });
+
+
+
+
+
+$( document ).ready(function() {
+
+
+    $(document).on('click', '.btn-delete', function(e) {
+        var obj = $(this);
+        var code = obj.data('code');
+        var location="demo-php/index.php";
+        $.ajax({
+            url: 'ajax.php',
+            data: {action:'delete', code:code},
+            type: 'post',
+            dataType: 'json',
+            success: function (rs) {
+                $('#msg-cnt').html(rs.message);
+
+                if (rs.status == 'ok') {
+                    alert('se elimino correctamente');
+                    window.location.href = 'http://localhost/demo-php/index.php';
+
+                }
+                else {
+                    alert('Error al eliminar');
+                }
+            }
+        });
+       // return false;
+        e.preventDefault();
+
+    });
+});
+
+
+
+
+
+

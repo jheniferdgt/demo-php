@@ -61,7 +61,7 @@ class Dm
         $qformat = sprintf('DELETE FROM idx_property_active WHERE sysid="%s"', $code);
         $qdelete = sprintf($qformat, $_POST['sysid']);
         $this->db->query($qdelete);
-        echo '<div class="alert alert-danger"><strong>Danger!</strong> Property Delete MLS: ' . $code . ' </div>';
+     //  echo '<div class="alert alert-danger"><strong>Danger!</strong> Property Delete MLS: ' . $code . ' </div>';
     }
 
     function listing()

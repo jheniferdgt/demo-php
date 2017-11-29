@@ -9,4 +9,14 @@ switch ($params['action']){
         echo json_encode($output);
         die;
         break;
+    case 'delete':
+        $data = $dm->delete($params['code']);
+        $msg = '<div class="alert alert-danger"><strong>Danger!</strong> Property Delete. </div>';
+         $output = array('status' => 'ok', 'message' => $msg);
+        echo json_encode($output);
+        die;
+        break;
 }
+
+
+

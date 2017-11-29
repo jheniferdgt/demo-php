@@ -12,6 +12,7 @@
         <input type="hidden" name="action" value="edit" />
         <input type="hidden" name="update" value="yes" />
         <input type="hidden" name="id" value="<?php echo (int)$_GET['id']; ?>" />
+
         <label for="address short">address short :</label><br>
         <input type="text" name="address_short" id="address_short" maxlength="100" value="<?php echo $data['address_short']; ?>" >
         <br/><br/>

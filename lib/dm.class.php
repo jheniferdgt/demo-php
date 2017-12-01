@@ -43,9 +43,10 @@ class Dm
 
     function edit($code) {
         if (isset($_POST['update'])) {
-            $query = 'update idx_property_active set address_short="%s" , address_large="%s" where sysid="%d"';
-            $qupdate = sprintf($query, $_POST['address_short'], $_POST['address_large'], $_POST['id']);
+            $query = 'update idx_property_active set address_short="%s" , address_large="%s" , price= %d where sysid = %d ';
+            $qupdate = sprintf($query, $_POST['address_short'], addslashes($_POST['address_large']), (int)$_POST['price'], $_POST['id']);
             $response = $this->db->query($qupdate);
+//            var_dump($response);
             if (!$response) {
                 echo 'Error update ' . $qupdate;
                 die;

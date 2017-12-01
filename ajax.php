@@ -2,6 +2,11 @@
 require 'controller.php';
 $params = $_POST;
 switch ($params['action']){
+    case 'search-by-id':
+        $data = $dm->edit($params['code']);
+        echo json_encode($data);
+        die;
+        break;
     case 'edit':
         $data = $dm->edit($params['id']);
         $msg = '<div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action. </div>';

@@ -1,19 +1,15 @@
 $( document ).ready(function() {
-
-    console.log('bbbbb');
-
+// add new item and save edit item
     $(document).on('click', '#btn-submit', function(e) {
         console.log("ok");
         $.ajax({
             url: 'ajax.php',
-            data: $("#frm-edit").serialize(),
+            data: $("#frm").serialize(),
             type: 'post',
             dataType: 'json',
             success: function (rs) {
                 $('#msg-cnt').html(rs.message);
-
                 if (rs.status == 'ok') {
-                    //alert('exito al cargar modulo');
                     window.location.href = 'http://localhost/demo-php/index.php';
                 }
                 else {
@@ -25,9 +21,11 @@ $( document ).ready(function() {
         return false;
     });
 
+    // edit
     $(document).on('click', '.btn-edit', function(e) {
         var obj = $(this);
         var code = obj.data('code');
+        $('#exampleModal h1').html('Edit item');
         $.ajax({
             url: 'ajax.php',
             data: {code:code, action: 'search-by-id'},
@@ -36,18 +34,30 @@ $( document ).ready(function() {
             success: function (response) {
                 if(response.sysid > 0){
                     $('#action').val('edit');
-                    $('#update').val('yes');
                     $('#address_short').val(response.address_short);
                     $('#address_large').val(response.address_large);
                     $('#price').val(response.price);
                     $('#id').val(response.sysid);
                 }
+
             }
         });
         e.preventDefault();
         return false;
     });
 
+    // add open form
+    $(document).on('click', '#btn-add', function(e) {
+        $('#exampleModal h1').html('Add New item');
+        $('#action').val('add');
+        $('#address_short').val('');
+        $('#address_large').val('');
+        $('#price').val('');
+        $('#id').val('');
+
+        e.preventDefault();
+        return false;
+    });
 
     $(document).on('click', '.btn-delete', function(e) {
         var obj = $(this);
@@ -75,6 +85,13 @@ $( document ).ready(function() {
         e.preventDefault();
 
     });
+
+
+
+
+
+
+
 
     $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal

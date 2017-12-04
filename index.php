@@ -22,7 +22,7 @@
              break;
         case 'add':
             $data = $dm->add();
-            require_once 'template/add.php';
+
             break;
         case 'delete':
             $data = $dm->delete($code);
@@ -34,17 +34,19 @@
     ?>
 </div>
 
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h1></h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <div id="msg-cnt"> </div>
             </div>
             <div class="modal-body">
-                <form id="frm-edit" method="post">
-                    <input type="hidden" id="action" name="action" value="edit" />
-                    <input type="hidden" id="update" name="update" value="yes" />
+                <form id="frm" method="post" >
+                    <input type="hidden" id="action" name="action" value="" />
                     <input type="hidden" name="id" id="id" value="" />
 
                     <div class="form-group">
@@ -68,5 +70,8 @@
         </div>
     </div>
 </div>
+
+
+
 </body>
 </html>

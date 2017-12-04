@@ -19,7 +19,7 @@ $current_page = $data['paginator']['current_page_number'];
             <?php foreach($row as $r): ?>
                 <td><?php echo $r; ?></td>
             <?php endforeach; ?>
-<!--            <td>--><?php //echo sprintf('<a  data-toggle="modal"  data-code="%s" data-target="#myModal" class="btn-edit" >Edit</a>', $row['sysid']); ?><!--</td>-->
+
             <td><?php echo sprintf('<a class="btn-edit" data-code="%s"  data-toggle="modal" data-target="#exampleModal" >Edit</a>', $row['sysid']); ?></td>
 
             <td><?php echo sprintf('<a class="btn-delete" data-code="%s" href="index.php?action=delete&id=%d">Delete</a>', $row['sysid'], $row['sysid']); ?></td>
@@ -27,6 +27,8 @@ $current_page = $data['paginator']['current_page_number'];
         </tr>
     <?php endforeach; ?>
 </table>
+
+<div>   <input id="btn-add" type="submit" name="btn-add" value="add"  class="btn-add" data-code="%s"  data-toggle="modal" data-target="#exampleModal"> </div>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination">

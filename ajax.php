@@ -3,13 +3,18 @@ require 'controller.php';
 $params = $_POST;
 switch ($params['action']){
     case 'search-by-id':
-        $data = $dm->edit($params['code']);
+        $data = $dm->search_by_id($params['code']);
         echo json_encode($data);
         die;
         break;
+    case 'add':
+        $msg = $dm->add();
+        $output = array('status' => 'ok', 'message' => $msg);
+        echo json_encode($output);
+        die;
+        break;
     case 'edit':
-        $data = $dm->edit($params['id']);
-        $msg = '<div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action. </div>';
+        $msg = $dm->edit();
         $output = array('status' => 'ok', 'message' => $msg);
         echo json_encode($output);
         die;
@@ -21,6 +26,8 @@ switch ($params['action']){
         echo json_encode($output);
         die;
         break;
+
+
 }
 
 

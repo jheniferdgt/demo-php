@@ -37,25 +37,30 @@ class Dm
         );
     }
 
-    function add() {
-
+    function search_by_id($sysid){
+        $query = sprintf('select * from idx_property_active where sysid = %d', $sysid);
+        $row = $this->db->row($query);
+        return $row;
     }
 
-    function edit($code) {
-        if (isset($_POST['update'])) {
+    function add() {
+        if(array_key_exists('action', $_POST) && $_POST['action'] == 'add') {
+            $query = 'insert  into idx_property_active (address_short, address_large, price) values("%s", "%s", %d); ';
+            $queryadd = sprintf($query, $_POST['address_short'], addslashes($_POST['address_large']), (int)$_POST['price']);
+            $this->db->query($queryadd);
+            $msg = '<div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action. </div>';
+            return $msg ;
+        }
+    }
+
+    function edit() {
+        if(array_key_exists('action', $_POST) && $_POST['action'] == 'edit') {
             $query = 'update idx_property_active set address_short="%s" , address_large="%s" , price= %d where sysid = %d ';
             $qupdate = sprintf($query, $_POST['address_short'], addslashes($_POST['address_large']), (int)$_POST['price'], $_POST['id']);
-            $response = $this->db->query($qupdate);
-//            var_dump($response);
-            if (!$response) {
-                echo 'Error update ' . $qupdate;
-                die;
-            }
+            $this->db->query($qupdate);
+            $msg = '<div class="alert alert-success"><strong>Success!</strong> Update item. </div>';
+            return $msg;
         }
-        $query = sprintf('select id,sysid,mls_num,price,address_short,address_large from idx_property_active where sysid = %d', $code);
-        $data = $this->db->row($query);
-        return $data;
-
     }
     function delete($code)
     {
